@@ -1,0 +1,109 @@
+[gd_scene load_steps=15 format=3 uid="uid://ykturp0t77ds"]
+
+[ext_resource type="Script" path="res://scripts/water_area.gd" id="1_3dgav"]
+[ext_resource type="FontFile" uid="uid://bwy2e8xmmkrd4" path="res://assets/fonts/gemunu-libre-v8-latin-700.ttf" id="2_upus8"]
+[ext_resource type="LabelSettings" uid="uid://d1a7hre74ar6n" path="res://assets/fonts/lvllabelsettings.tres" id="3_1cv1f"]
+[ext_resource type="Texture2D" uid="uid://cng2dpmhri2ba" path="res://assets/sprites/ui sprites/All.png" id="4_53jbt"]
+[ext_resource type="AudioStream" uid="uid://clqqvg81huvel" path="res://assets/audio/machine.MP3" id="5_1o535"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2xkq"]
+size = Vector2(46, 6.84375)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d3rxo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbhkc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4ev0"]
+atlas = ExtResource("4_53jbt")
+region = Rect2(448, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj0fa"]
+atlas = ExtResource("4_53jbt")
+region = Rect2(464, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu7dh"]
+atlas = ExtResource("4_53jbt")
+region = Rect2(480, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxj3s"]
+atlas = ExtResource("4_53jbt")
+region = Rect2(496, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_45oni"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4ev0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj0fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu7dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxj3s")
+}],
+"loop": true,
+"name": &"play",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a3nlb"]
+size = Vector2(24.7097, 5.67748)
+
+[node name="WaterArea" type="Area2D"]
+script = ExtResource("1_3dgav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, 14.5781)
+shape = SubResource("RectangleShape2D_k2xkq")
+
+[node name="fill_bar" type="ProgressBar" parent="."]
+z_index = 2
+offset_right = 40.0
+offset_bottom = 37.0
+scale = Vector2(0.5, 0.431)
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_upus8")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxEmpty_d3rxo")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_pbhkc")
+exp_edit = true
+rounded = true
+
+[node name="levelLabel" type="Label" parent="."]
+z_index = 10
+offset_top = -11.0
+offset_right = 97.0
+offset_bottom = 74.0
+scale = Vector2(0.143056, 0.126301)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_upus8")
+theme_override_font_sizes/font_size = 50
+label_settings = ExtResource("3_1cv1f")
+
+[node name="animatesprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(54, 14)
+scale = Vector2(0.553445, 0.588543)
+sprite_frames = SubResource("SpriteFrames_45oni")
+animation = &"play"
+frame = 2
+frame_progress = 0.962305
+
+[node name="update_area" type="Area2D" parent="."]
+position = Vector2(54, 14)
+scale = Vector2(0.553445, 0.588543)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="update_area"]
+shape = SubResource("RectangleShape2D_a3nlb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1o535")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="update_area" to="." method="_on_update_area_body_entered"]

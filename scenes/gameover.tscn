@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5e81i5q2hkg8"]
+
+[ext_resource type="Script" path="res://scripts/gameover.gd" id="1_lt83r"]
+[ext_resource type="Texture2D" uid="uid://dkhd3fn3m6p40" path="res://assets/background/sky.png" id="1_ybvlk"]
+[ext_resource type="FontFile" uid="uid://27u8po6r3a4j" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="2_goiyp"]
+
+[node name="gameover" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lt83r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ybvlk")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.5
+offset_top = -24.5
+offset_right = 80.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_goiyp")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER!!!
+You Lost your rating!"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 390.0
+offset_right = 629.0
+offset_bottom = 424.0
+theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.741834, 0, 0.23618, 1)
+theme_override_fonts/font = ExtResource("2_goiyp")
+theme_override_font_sizes/font_size = 25
+text = "RESTART"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]

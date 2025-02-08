@@ -1,0 +1,103 @@
+[gd_scene load_steps=15 format=3 uid="uid://qajs0dvhcvsy"]
+
+[ext_resource type="Script" path="res://scripts/coke_area.gd" id="1_1eehl"]
+[ext_resource type="FontFile" uid="uid://bwy2e8xmmkrd4" path="res://assets/fonts/gemunu-libre-v8-latin-700.ttf" id="2_yli6v"]
+[ext_resource type="LabelSettings" uid="uid://d1a7hre74ar6n" path="res://assets/fonts/lvllabelsettings.tres" id="3_kordj"]
+[ext_resource type="Texture2D" uid="uid://cng2dpmhri2ba" path="res://assets/sprites/ui sprites/All.png" id="4_ba24g"]
+[ext_resource type="AudioStream" uid="uid://clqqvg81huvel" path="res://assets/audio/machine.MP3" id="5_h7cki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqytp"]
+size = Vector2(32, 12.5926)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rsvta"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0kc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4ev0"]
+atlas = ExtResource("4_ba24g")
+region = Rect2(448, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj0fa"]
+atlas = ExtResource("4_ba24g")
+region = Rect2(464, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu7dh"]
+atlas = ExtResource("4_ba24g")
+region = Rect2(480, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxj3s"]
+atlas = ExtResource("4_ba24g")
+region = Rect2(496, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b54l2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4ev0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj0fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu7dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxj3s")
+}],
+"loop": true,
+"name": &"play",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dirp"]
+size = Vector2(9, 9)
+
+[node name="CokeArea" type="Area2D"]
+script = ExtResource("1_1eehl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 7)
+shape = SubResource("RectangleShape2D_nqytp")
+debug_color = Color(0.339184, 0.0800112, 0.00756401, 0.42)
+
+[node name="fill_bar" type="ProgressBar" parent="."]
+z_index = 2
+offset_right = 44.0
+offset_bottom = 37.0
+scale = Vector2(0.419664, 0.313389)
+theme_override_colors/font_color = Color(0.541176, 0.160784, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = ExtResource("2_yli6v")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxEmpty_rsvta")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_f0kc4")
+exp_edit = true
+rounded = true
+
+[node name="levelLabel" type="Label" parent="."]
+z_index = 1
+offset_top = -24.0
+offset_right = 138.0
+offset_bottom = 61.0
+scale = Vector2(0.267859, 0.286744)
+label_settings = ExtResource("3_kordj")
+
+[node name="animatesprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
+position = Vector2(46, 13)
+scale = Vector2(0.553445, 0.588543)
+sprite_frames = SubResource("SpriteFrames_b54l2")
+animation = &"play"
+
+[node name="update_area" type="Area2D" parent="."]
+position = Vector2(46, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="update_area"]
+shape = SubResource("RectangleShape2D_2dirp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_h7cki")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="update_area" to="." method="_on_update_area_body_entered"]

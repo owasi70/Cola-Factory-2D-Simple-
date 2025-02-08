@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://chcqlrqd2r0dt"]
+
+[ext_resource type="Texture2D" uid="uid://cvssbyonhpav8" path="res://assets/sprites/ui sprites/shadedLight24.png" id="1_6yk20"]
+[ext_resource type="Texture2D" uid="uid://c5pvwohvfbqt0" path="res://assets/sprites/ui sprites/shadedLight25.png" id="2_2fy5l"]
+[ext_resource type="Texture2D" uid="uid://bxgg658u6dl" path="res://assets/sprites/ui sprites/shadedLight26.png" id="3_ke3ql"]
+[ext_resource type="Texture2D" uid="uid://btyojoidph3sn" path="res://assets/sprites/ui sprites/shadedLight27.png" id="4_m7gsl"]
+
+[node name="TouchControl" type="CanvasLayer"]
+
+[node name="Left" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.262745)
+position = Vector2(53, 400)
+texture_normal = ExtResource("1_6yk20")
+action = "A"
+
+[node name="Right" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.262745)
+position = Vector2(283, 400)
+texture_normal = ExtResource("2_2fy5l")
+action = "D"
+
+[node name="Top" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.262745)
+position = Vector2(163, 300)
+texture_normal = ExtResource("3_ke3ql")
+action = "W"
+
+[node name="Down" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.262745)
+position = Vector2(163, 500)
+texture_normal = ExtResource("4_m7gsl")
+action = "S"

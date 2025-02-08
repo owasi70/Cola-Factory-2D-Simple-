@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://bwuw8k118u878"]
+
+[ext_resource type="Script" path="res://scripts/bottle_buyingarea.gd" id="1_ajlud"]
+[ext_resource type="Texture2D" uid="uid://dxsn7ub4kfixq" path="res://assets/sprites/city sprites/CustomizableCarsDemo.png" id="2_j1aml"]
+[ext_resource type="AudioStream" uid="uid://ddasbnp0reak7" path="res://assets/audio/hornsound.mp3" id="3_fl045"]
+[ext_resource type="AudioStream" uid="uid://bcy0vyv2mqnfb" path="res://assets/audio/phone.MP3" id="4_d8o58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3rbt"]
+size = Vector2(22.3685, 55.1428)
+
+[sub_resource type="Animation" id="Animation_a8tsa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/arrive:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-441, 30)]
+}
+
+[sub_resource type="Animation" id="Animation_brajr"]
+resource_name = "arrival"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/arrive:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5, 6.1, 9.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-441, 30), Vector2(512, 25), Vector2(512, 25), Vector2(1306, 22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("horn:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1mv88"]
+resource_name = "exit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nsunh"]
+_data = {
+"RESET": SubResource("Animation_a8tsa"),
+"arrival": SubResource("Animation_brajr"),
+"exit": SubResource("Animation_1mv88")
+}
+
+[node name="BottleBuyingarea" type="Area2D" groups=["player"]]
+position = Vector2(107, 21)
+script = ExtResource("1_ajlud")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-96, 17)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(-48.5, 17)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(0.5, 18)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(49.5, 18)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(96.5, 17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(135, 3.42858)
+shape = SubResource("RectangleShape2D_v3rbt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nsunh")
+}
+
+[node name="arrive" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(-441, 30)
+texture = ExtResource("2_j1aml")
+region_enabled = true
+region_rect = Rect2(3, 136, 59, 44)
+
+[node name="horn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fl045")
+
+[node name="call" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d8o58")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://cdaxcj84yl0rg"]
+
+[ext_resource type="Script" path="res://scripts/customer_2.gd" id="1_g3vij"]
+[ext_resource type="Texture2D" uid="uid://kyx1xesq1oxl" path="res://assets/sprites/npc sprites/RabbitMon-Sheet.png" id="2_dga0o"]
+[ext_resource type="AudioStream" uid="uid://bdfyv5kc53r17" path="res://assets/audio/cashsound.mp3" id="3_wr6wh"]
+[ext_resource type="AudioStream" uid="uid://dhp6ufbnm724s" path="res://assets/audio/boosound.mp3" id="4_vuco7"]
+[ext_resource type="FontFile" uid="uid://bwy2e8xmmkrd4" path="res://assets/fonts/gemunu-libre-v8-latin-700.ttf" id="5_403ge"]
+[ext_resource type="Texture2D" uid="uid://bhdwhd6seqq34" path="res://assets/sprites/prop sprites/bottle.png" id="6_w3tnl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvalb"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpstt"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaawh"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1kuw"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll2e5"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pf1c"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhx6d"]
+atlas = ExtResource("2_dga0o")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_21y06"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvalb")
+}],
+"loop": true,
+"name": &"wait",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpstt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaawh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1kuw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll2e5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pf1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhx6d")
+}],
+"loop": true,
+"name": &"walk2",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4qvgb"]
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioyvk"]
+size = Vector2(23, 12)
+
+[node name="customer_2" type="CharacterBody2D"]
+script = ExtResource("1_g3vij")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_21y06")
+animation = &"walk2"
+frame = 2
+frame_progress = 0.140146
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4qvgb")
+debug_color = Color(0.802411, 0.418734, 5.77569e-07, 0.42)
+
+[node name="hand" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hand"]
+position = Vector2(-1.5, 2)
+shape = SubResource("RectangleShape2D_ioyvk")
+
+[node name="cashsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_wr6wh")
+
+[node name="boosound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vuco7")
+
+[node name="orderlabel" type="Label" parent="."]
+offset_top = -38.0
+offset_right = 40.0
+offset_bottom = -15.0
+theme_override_fonts/font = ExtResource("5_403ge")
+theme_override_font_sizes/font_size = 13
+
+[node name="order_panel" type="Panel" parent="."]
+offset_left = -11.0
+offset_top = -34.0
+offset_right = 4.0
+offset_bottom = -22.0
+scale = Vector2(1.4, 1.4)
+
+[node name="water" type="Sprite2D" parent="order_panel"]
+modulate = Color(0, 0, 0.572549, 1)
+position = Vector2(7.95, 5.806)
+scale = Vector2(0.3, 0.534)
+texture = ExtResource("6_w3tnl")
+region_enabled = true
+region_rect = Rect2(2, 0, 13, 18)
+
+[node name="juice" type="Sprite2D" parent="order_panel"]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(7.95, 5.806)
+scale = Vector2(0.3, 0.534)
+texture = ExtResource("6_w3tnl")
+region_enabled = true
+region_rect = Rect2(2, 0, 13, 18)
+
+[node name="coke" type="Sprite2D" parent="order_panel"]
+modulate = Color(0.155791, 0.0729505, 0.00460953, 1)
+position = Vector2(7.95, 5.806)
+scale = Vector2(0.3, 0.534)
+texture = ExtResource("6_w3tnl")
+region_enabled = true
+region_rect = Rect2(2, 0, 13, 18)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-35, 0)
+
+[connection signal="body_entered" from="hand" to="." method="_on_hand_body_entered"]

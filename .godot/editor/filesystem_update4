@@ -1,0 +1,17 @@
+res://scenes/main.tscn
+res://assets/fonts/lvllabelsettings.tres
+res://scenes/player.tscn
+res://scenes/bottle.tscn
+res://scenes/water_area.tscn
+res://scenes/coke_area.tscn
+res://scenes/juice_area.tscn
+res://scenes/bottle_buyingarea.tscn
+res://scenes/interface.tscn
+res://scenes/start_menu.tscn
+res://scenes/lvlcomplete.tscn
+res://scenes/gameover.tscn
+res://scenes/tip.tscn
+res://scenes/customer_1.tscn
+res://scenes/customer_2.tscn
+res://scenes/customer.tscn
+res://addons/virtual_joystick/virtual_joystick_scene.tscn

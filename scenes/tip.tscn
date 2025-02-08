@@ -1,0 +1,132 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4wd3qebs0r5o"]
+
+[ext_resource type="Script" path="res://scripts/tip.gd" id="1_nw4gt"]
+[ext_resource type="Texture2D" uid="uid://dkhd3fn3m6p40" path="res://assets/background/sky.png" id="1_y777n"]
+[ext_resource type="FontFile" uid="uid://bwy2e8xmmkrd4" path="res://assets/fonts/gemunu-libre-v8-latin-700.ttf" id="2_drxty"]
+[ext_resource type="Texture2D" uid="uid://bhdwhd6seqq34" path="res://assets/sprites/prop sprites/bottle.png" id="3_6klp8"]
+[ext_resource type="FontFile" uid="uid://27u8po6r3a4j" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_px1ls"]
+
+[node name="Tip" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nw4gt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0.384314, 1, 1)
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 640.0
+texture = ExtResource("1_y777n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -194.0
+offset_right = 260.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer"]
+position = Vector2(460, 75)
+rotation = 0.469733
+scale = Vector2(1.62964, 2.4878)
+texture = ExtResource("3_6klp8")
+
+[node name="Sprite2D3" type="Sprite2D" parent="VBoxContainer"]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(673, 193)
+rotation = 0.469733
+scale = Vector2(1.62964, 2.4878)
+texture = ExtResource("3_6klp8")
+
+[node name="Sprite2D4" type="Sprite2D" parent="VBoxContainer"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(513, 128)
+rotation = 0.469733
+scale = Vector2(1.62964, 2.4878)
+texture = ExtResource("3_6klp8")
+
+[node name="Sprite2D5" type="Sprite2D" parent="VBoxContainer"]
+modulate = Color(0.40773, 0.19891, 0.00590511, 1)
+position = Vector2(624, 191)
+rotation = 0.469733
+scale = Vector2(1.62964, 2.4878)
+texture = ExtResource("3_6klp8")
+
+[node name="Sprite2D6" type="Sprite2D" parent="VBoxContainer"]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(573, 191)
+rotation = 0.469733
+scale = Vector2(1.62964, 2.4878)
+texture = ExtResource("3_6klp8")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_drxty")
+theme_override_font_sizes/font_size = 50
+text = "TIPS"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 1, 0.0627451, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_px1ls")
+theme_override_font_sizes/font_size = 50
+text = "FILL WATER "
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 1, 0.0627451, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_px1ls")
+theme_override_font_sizes/font_size = 50
+text = "MAKE COLA/JUICE"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 1, 0.0627451, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_px1ls")
+theme_override_font_sizes/font_size = 50
+text = "SELL WATER/COLA/JUICE"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+modulate = Color(0, 1, 0.0627451, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_px1ls")
+theme_override_font_sizes/font_size = 28
+text = "Buy bottle if you ran out of bottle"
+horizontal_alignment = 1
+
+[node name="Ok" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = -181.0
+offset_right = 67.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_px1ls")
+theme_override_font_sizes/font_size = 47
+text = "OKAY"
+
+[connection signal="pressed" from="Ok" to="." method="_on_ok_pressed"]

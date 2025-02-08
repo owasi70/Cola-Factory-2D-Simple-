@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbm0k03kciyy3"]
+
+[ext_resource type="Script" path="res://scripts/customermanager.gd" id="1_4st36"]
+[ext_resource type="Texture2D" uid="uid://dtv1o51x8mg1u" path="res://icon.svg" id="2_y2f16"]
+
+[node name="customermanager" type="Node2D"]
+script = ExtResource("1_4st36")
+
+[node name="DestinationMarker1" type="Marker2D" parent="."]
+position = Vector2(130, 131)
+
+[node name="DestinationMarker2" type="Marker2D" parent="."]
+position = Vector2(131, 246)
+
+[node name="DestinationMarker3" type="Marker2D" parent="."]
+position = Vector2(134, 363)
+
+[node name="SpawnMarker" type="Marker2D" parent="."]
+position = Vector2(460, 250)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(129, 129)
+scale = Vector2(0.15625, 0.140625)
+texture = ExtResource("2_y2f16")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(132, 248)
+scale = Vector2(0.15625, 0.140625)
+texture = ExtResource("2_y2f16")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(133, 364)
+scale = Vector2(0.15625, 0.140625)
+texture = ExtResource("2_y2f16")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
